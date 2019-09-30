@@ -6,10 +6,17 @@ List<MorseSymbol> translateLetter(String letter) {
 }
 
 List<MorseSymbol> translateWord(String word) {
-  
   return word.split('') // split every letter
   .map<List<MorseSymbol>>((String letter) => translateLetter(letter)) // create a list of symbol lists
   .reduce((list, symbols) {
-    return [...list, MorseSymbol.SYMBOL_SPACE, ...symbols]; // add a symbol space in between
+    return [...list, MorseSymbol.LETTER_SPACE, ...symbols]; // add a symbol space in between
   });
+}
+
+List<MorseSymbol> translateSentence(String sentence) {
+  return sentence.split(' ')
+    .map((String word) => translateWord(word))
+    .reduce((list, symbols) {
+      return [...list, MorseSymbol.WORD_SPACE, ...symbols];
+    });
 }

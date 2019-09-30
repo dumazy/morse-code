@@ -9,17 +9,13 @@ main() {
 
         final symbols = translateLetter('a');
 
-        expect(symbols.length, 2);
-        expect(symbols[0], MorseSymbol.DOT);
-        expect(symbols[1], MorseSymbol.DASH);
+        expect(symbols, [MorseSymbol.DOT, MorseSymbol.SYMBOL_SPACE, MorseSymbol.DASH]);
       });
 
       test("should translate letter A", () {
         final symbols = translateLetter('A');
 
-        expect(symbols.length, 2);
-        expect(symbols[0], MorseSymbol.DOT);
-        expect(symbols[1], MorseSymbol.DASH);
+        expect(symbols, [MorseSymbol.DOT, MorseSymbol.SYMBOL_SPACE, MorseSymbol.DASH]);
       });
     });
 
@@ -29,16 +25,23 @@ main() {
         
         expect(symbols, [
           MorseSymbol.DOT,
+          MorseSymbol.SYMBOL_SPACE,
           MorseSymbol.DASH, // a
-          MorseSymbol.SYMBOL_SPACE, 
+          MorseSymbol.LETTER_SPACE, 
           MorseSymbol.DASH,
+          MorseSymbol.SYMBOL_SPACE,
           MorseSymbol.DOT,
+          MorseSymbol.SYMBOL_SPACE,
           MorseSymbol.DOT,
+          MorseSymbol.SYMBOL_SPACE,
           MorseSymbol.DOT, // b
+          MorseSymbol.LETTER_SPACE,
+          MorseSymbol.DASH,
+          MorseSymbol.SYMBOL_SPACE,
+          MorseSymbol.DOT,
           MorseSymbol.SYMBOL_SPACE,
           MorseSymbol.DASH,
-          MorseSymbol.DOT,
-          MorseSymbol.DASH,
+          MorseSymbol.SYMBOL_SPACE,
           MorseSymbol.DOT, // c
         ]);
       });
@@ -48,20 +51,59 @@ main() {
         
         expect(symbols, [
           MorseSymbol.DOT,
+          MorseSymbol.SYMBOL_SPACE,
           MorseSymbol.DASH, // a
-          MorseSymbol.SYMBOL_SPACE, 
+          MorseSymbol.LETTER_SPACE, 
           MorseSymbol.DASH,
+          MorseSymbol.SYMBOL_SPACE,
           MorseSymbol.DOT,
+          MorseSymbol.SYMBOL_SPACE,
           MorseSymbol.DOT,
+          MorseSymbol.SYMBOL_SPACE,
           MorseSymbol.DOT, // b
+          MorseSymbol.LETTER_SPACE,
+          MorseSymbol.DASH,
+          MorseSymbol.SYMBOL_SPACE,
+          MorseSymbol.DOT,
           MorseSymbol.SYMBOL_SPACE,
           MorseSymbol.DASH,
-          MorseSymbol.DOT,
-          MorseSymbol.DASH,
+          MorseSymbol.SYMBOL_SPACE,
           MorseSymbol.DOT, // c
         ]);
       });
 
+    });
+
+    group("translate sentence", () {
+      test("should translate sentence", () {
+        final symbols = translateSentence("ab ac");
+
+        expect(symbols, [
+          MorseSymbol.DOT,
+          MorseSymbol.SYMBOL_SPACE,
+          MorseSymbol.DASH, // a
+          MorseSymbol.LETTER_SPACE, 
+          MorseSymbol.DASH,
+          MorseSymbol.SYMBOL_SPACE,
+          MorseSymbol.DOT,
+          MorseSymbol.SYMBOL_SPACE,
+          MorseSymbol.DOT,
+          MorseSymbol.SYMBOL_SPACE,
+          MorseSymbol.DOT, // b
+          MorseSymbol.WORD_SPACE,
+          MorseSymbol.DOT,
+          MorseSymbol.SYMBOL_SPACE,
+          MorseSymbol.DASH, // a
+          MorseSymbol.LETTER_SPACE, 
+          MorseSymbol.DASH,
+          MorseSymbol.SYMBOL_SPACE,
+          MorseSymbol.DOT,
+          MorseSymbol.SYMBOL_SPACE,
+          MorseSymbol.DASH,
+          MorseSymbol.SYMBOL_SPACE,
+          MorseSymbol.DOT, // c
+        ]);
+      });
     });
   });
 }
