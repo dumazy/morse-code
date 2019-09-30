@@ -90,11 +90,52 @@ main() {
         ]);
       });
 
+      test("should trim spaces", () {
+        final symbols = translateWord("it ");
+
+        expect(symbols, [
+          MorseSymbol.DOT,
+          MorseSymbol.SYMBOL_SPACE,
+          MorseSymbol.DOT,
+          MorseSymbol.LETTER_SPACE,
+          MorseSymbol.DASH,
+        ]);
+      });
+
     });
 
     group("translate sentence", () {
       test("should translate sentence", () {
         final symbols = translateSentence("ab ac");
+
+        expect(symbols, [
+          MorseSymbol.DOT,
+          MorseSymbol.SYMBOL_SPACE,
+          MorseSymbol.DASH, // a
+          MorseSymbol.LETTER_SPACE, 
+          MorseSymbol.DASH,
+          MorseSymbol.SYMBOL_SPACE,
+          MorseSymbol.DOT,
+          MorseSymbol.SYMBOL_SPACE,
+          MorseSymbol.DOT,
+          MorseSymbol.SYMBOL_SPACE,
+          MorseSymbol.DOT, // b
+          MorseSymbol.WORD_SPACE,
+          MorseSymbol.DOT,
+          MorseSymbol.SYMBOL_SPACE,
+          MorseSymbol.DASH, // a
+          MorseSymbol.LETTER_SPACE, 
+          MorseSymbol.DASH,
+          MorseSymbol.SYMBOL_SPACE,
+          MorseSymbol.DOT,
+          MorseSymbol.SYMBOL_SPACE,
+          MorseSymbol.DASH,
+          MorseSymbol.SYMBOL_SPACE,
+          MorseSymbol.DOT, // c
+        ]);
+      });
+      test("should trim double spaces", () {
+        final symbols = translateSentence("ab  ac");
 
         expect(symbols, [
           MorseSymbol.DOT,
