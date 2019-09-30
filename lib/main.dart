@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:morse_code/domain/symbols.dart';
 import 'package:morse_code/domain/translator.dart';
+import 'package:morse_code/ui/morse_view.dart';
 
 void main() => runApp(MyApp());
 
@@ -27,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String text = "";
   @override
   Widget build(BuildContext context) {
-    final result = translate(text);
+    // final result = translate(text);
     return Scaffold(
       appBar: AppBar(title: Text("Morse code translator")),
       body: Column(
@@ -40,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen> {
               });
             },
           ),
-          Text("Result: $result"),
+          MorseView(text: text,)
         ],
       ),
     );
