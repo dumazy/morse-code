@@ -1,4 +1,4 @@
-import 'package:morse_code/morse/symbols.dart';
+import 'package:morse_code/domain/symbols.dart';
 
 const dot = MorseSymbol.DOT;
 const dash = MorseSymbol.DASH;

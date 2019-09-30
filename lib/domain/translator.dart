@@ -1,5 +1,5 @@
-import 'package:morse_code/morse/dictionary.dart';
-import 'package:morse_code/morse/symbols.dart';
+import 'package:morse_code/domain/dictionary.dart';
+import 'package:morse_code/domain/symbols.dart';
 
 List<MorseSymbol> translateLetter(String letter) {
   if(dictionary.containsKey(letter.toLowerCase())) {

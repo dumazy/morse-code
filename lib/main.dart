@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:morse_code/morse/symbols.dart';
-import 'package:morse_code/morse/translator.dart';
+import 'package:morse_code/domain/symbols.dart';
+import 'package:morse_code/domain/translator.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,7 +24,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String text = "text";
+  String text = "";
   @override
   Widget build(BuildContext context) {
     final result = translate(text);
@@ -60,7 +60,7 @@ String translate(String text) {
       case MorseSymbol.WORD_SPACE:
         return "   ";
       default:
-        return " ";
+        return "";
     }
   }).join();
 }
