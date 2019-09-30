@@ -12,6 +12,12 @@ main() {
         expect(symbols, [MorseSymbol.DOT, MorseSymbol.SYMBOL_SPACE, MorseSymbol.DASH]);
       });
 
+      test("should translate symbol letter", () {
+        final symbols = translateLetter('e');
+
+        expect(symbols, [MorseSymbol.DOT]);
+      });
+
       test("should translate letter A", () {
         final symbols = translateLetter('A');
 
@@ -69,6 +75,18 @@ main() {
           MorseSymbol.DASH,
           MorseSymbol.SYMBOL_SPACE,
           MorseSymbol.DOT, // c
+        ]);
+      });
+
+      test("should translate word with single symbol letter", () {
+        final symbols = translateWord("it");
+
+        expect(symbols, [
+          MorseSymbol.DOT,
+          MorseSymbol.SYMBOL_SPACE,
+          MorseSymbol.DOT,
+          MorseSymbol.LETTER_SPACE,
+          MorseSymbol.DASH,
         ]);
       });
 
