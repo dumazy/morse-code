@@ -31,5 +31,14 @@ Map<String, List<MorseSymbol>> dictionary = {
   'x': [dash, symbol_space, dot, symbol_space, dot, symbol_space, dash],
   'y': [dash, symbol_space, dot, symbol_space, dash, symbol_space, dash],
   'z': [dash, symbol_space, dash, symbol_space, dot, symbol_space, dot],
-
+  '0': [dash, symbol_space, dash, symbol_space, dash, symbol_space, dash, symbol_space, dash],
+  '1': [dot, symbol_space, dash, symbol_space, dash, symbol_space, dash, symbol_space, dash],
+  '2': [dot, symbol_space, dot, symbol_space, dash, symbol_space, dash, symbol_space, dash],
+  '3': [dot, symbol_space, dot, symbol_space, dot, symbol_space, dash, symbol_space, dash],
+  '4': [dot, symbol_space, dot, symbol_space, dot, symbol_space, dot, symbol_space, dash],
+  '5': [dot, symbol_space, dot, symbol_space, dot, symbol_space, dot, symbol_space, dot],
+  '6': [dash, symbol_space, dot, symbol_space, dot, symbol_space, dot, symbol_space, dot],
+  '7': [dash, symbol_space, dash, symbol_space, dot, symbol_space, dot, symbol_space, dot],
+  '8': [dash, symbol_space, dash, symbol_space, dash, symbol_space, dot, symbol_space, dot],
+  '9': [dash, symbol_space, dash, symbol_space, dash, symbol_space, dash, symbol_space, dot],
 };
