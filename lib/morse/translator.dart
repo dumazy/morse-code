@@ -7,4 +7,9 @@ List<MorseSymbol> translateLetter(String letter) {
 
 List<MorseSymbol> translateWord(String word) {
   
+  return word.split('') // split every letter
+  .map<List<MorseSymbol>>((String letter) => translateLetter(letter)) // create a list of symbol lists
+  .reduce((list, symbols) {
+    return [...list, MorseSymbol.SYMBOL_SPACE, ...symbols]; // add a symbol space in between
+  });
 }
