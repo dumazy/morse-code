@@ -8,11 +8,7 @@ class FlashBroadcaster extends Broadcaster {
 
   @override
   Future broadcastSignal(int milliseconds) async {
-    print("signal for $milliseconds ms");
-    Torch.turnOn();
-    await Future.delayed(Duration(milliseconds: milliseconds), () {
-      Torch.turnOff();
-    });
+    await Torch.flash(Duration(milliseconds: milliseconds));
   }
 
 
