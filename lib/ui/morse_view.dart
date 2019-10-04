@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:morse_code/domain/symbols.dart';
 import 'package:morse_code/domain/translator.dart';
+import 'package:morse_code/ui/broadcast.dart';
 
 class MorseView extends StatelessWidget {
   final String text;
@@ -11,8 +12,13 @@ class MorseView extends StatelessWidget {
   Widget build(BuildContext context) {
     final symbols = translateSentence(text);
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: _displaySentence(symbols),
+      children: <Widget>[
+        Broadcast(symbols: symbols,),
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: _displaySentence(symbols),
+        ),
+      ],
     );
   }
 
@@ -107,7 +113,7 @@ class SymbolSpace extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: Colors.black12,
+        color: Colors.transparent,
       ),
       width: 10,
       height: 10,

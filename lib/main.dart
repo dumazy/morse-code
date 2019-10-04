@@ -41,7 +41,10 @@ class _HomeScreenState extends State<HomeScreen> {
               });
             },
           ),
-          MorseView(text: text,)
+          SingleChildScrollView(
+              child: MorseView(
+            text: text,
+          ))
         ],
       ),
     );
