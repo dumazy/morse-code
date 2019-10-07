@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:morse_code/domain/symbols.dart';
 import 'package:morse_code/domain/translator.dart';
-import 'package:morse_code/ui/broadcast.dart';
 
 class MorseView extends StatelessWidget {
   final String text;
@@ -10,61 +9,49 @@ class MorseView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final symbols = translateSentence(text);
+    final sentence = translateText(text);
     return Column(
       children: <Widget>[
-        Broadcast(symbols: symbols,),
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: _displaySentence(symbols),
+          children: _displayText(sentence),
         ),
       ],
     );
   }
 
-  List<Widget> _displaySentence(List<MorseSymbol> symbols) {
-    List<List<MorseSymbol>> words = symbols.fold([[]], (wordList, symbol) {
-      if(symbol == MorseSymbol.WORD_SPACE) {
-        wordList.add([]);
-      } else {
-        wordList.last.add(symbol);
-      }
-      return wordList;
-    });
-
-    return words.map((List<MorseSymbol> word) => _displayWord(word)).toList();
+  List<Widget> _displayText(Sentence sentence) {
+    return sentence.words.map((Word word) => _displayWord(word)).toList();
   }
 
-  Widget _displayWord(List<MorseSymbol> word) {
-    List<List<MorseSymbol>> letters = word.fold([[]], (letterList, symbol) {
-      if(symbol == MorseSymbol.LETTER_SPACE) {
-        letterList.add([]);
-      } else {
-        letterList.last.add(symbol);
-      }
-      return letterList;
-    });
-
+  Widget _displayWord(Word word) {
     return Padding(
       padding: const EdgeInsets.all(20.0),
-      child: Column(children: 
-        letters.map(_displayLetter).toList(),
+      child: Column(
+        children: word.letters.map(_displayLetter).toList(),
       ),
     );
   }
 
-  Widget _displayLetter(List<MorseSymbol> letter) {
+  Widget _displayLetter(Letter letter) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Row(children: letter.map(_displaySymbol).toList(),),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+        Flexible(flex: 1, child: Text(letter.letter)),
+        Flexible(
+          flex: 3,
+          child: Row(
+              children: letter.symbols.map(_displaySymbol).toList(),
+            ),
+        ),
+      ]),
     );
   }
 
-
-
-  Widget _displaySymbol(MorseSymbol letter) {
-    switch (letter) {
-      
+  Widget _displaySymbol(MorseSymbol symbol) {
+    switch (symbol) {
       case MorseSymbol.DOT:
         return DotSymbol();
       case MorseSymbol.DASH:
@@ -73,10 +60,10 @@ class MorseView extends StatelessWidget {
         return SymbolSpace();
       case MorseSymbol.LETTER_SPACE:
         return LetterSpace();
-      default: 
+      default:
         return Container();
     }
-  } 
+  }
 }
 
 class DotSymbol extends StatelessWidget {

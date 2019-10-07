@@ -7,29 +7,29 @@ main() {
     group('translate letter', () {
       test("should translate letter a", () {
 
-        final symbols = translateLetter('a');
+        final letter = translateLetter('a');
 
-        expect(symbols, [MorseSymbol.DOT, MorseSymbol.SYMBOL_SPACE, MorseSymbol.DASH]);
+        expect(letter.symbols, [MorseSymbol.DOT, MorseSymbol.SYMBOL_SPACE, MorseSymbol.DASH]);
       });
 
       test("should translate symbol letter", () {
-        final symbols = translateLetter('e');
+        final letter = translateLetter('e');
 
-        expect(symbols, [MorseSymbol.DOT]);
+        expect(letter.symbols, [MorseSymbol.DOT]);
       });
 
       test("should translate letter A", () {
-        final symbols = translateLetter('A');
+        final letter = translateLetter('A');
 
-        expect(symbols, [MorseSymbol.DOT, MorseSymbol.SYMBOL_SPACE, MorseSymbol.DASH]);
+        expect(letter.symbols, [MorseSymbol.DOT, MorseSymbol.SYMBOL_SPACE, MorseSymbol.DASH]);
       });
     });
 
     group("translate word", () {
       test("should translate word", () {
-        final symbols = translateWord("abc");
+        final word = translateWord("abc");
         
-        expect(symbols, [
+        expect(word.symbols, [
           MorseSymbol.DOT,
           MorseSymbol.SYMBOL_SPACE,
           MorseSymbol.DASH, // a
@@ -53,9 +53,9 @@ main() {
       });
 
       test("should be case insensitive", () {
-        final symbols = translateWord("aBc");
+        final word = translateWord("aBc");
         
-        expect(symbols, [
+        expect(word.symbols, [
           MorseSymbol.DOT,
           MorseSymbol.SYMBOL_SPACE,
           MorseSymbol.DASH, // a
@@ -79,9 +79,9 @@ main() {
       });
 
       test("should translate word with single symbol letter", () {
-        final symbols = translateWord("it");
+        final word = translateWord("it");
 
-        expect(symbols, [
+        expect(word.symbols, [
           MorseSymbol.DOT,
           MorseSymbol.SYMBOL_SPACE,
           MorseSymbol.DOT,
@@ -91,9 +91,9 @@ main() {
       });
 
       test("should trim spaces", () {
-        final symbols = translateWord("it ");
+        final word = translateWord("it ");
 
-        expect(symbols, [
+        expect(word.symbols, [
           MorseSymbol.DOT,
           MorseSymbol.SYMBOL_SPACE,
           MorseSymbol.DOT,
@@ -106,9 +106,9 @@ main() {
 
     group("translate sentence", () {
       test("should translate sentence", () {
-        final symbols = translateSentence("ab ac");
+        final sentence = translateText("ab ac");
 
-        expect(symbols, [
+        expect(sentence.symbols, [
           MorseSymbol.DOT,
           MorseSymbol.SYMBOL_SPACE,
           MorseSymbol.DASH, // a
@@ -135,9 +135,9 @@ main() {
         ]);
       });
       test("should trim double spaces", () {
-        final symbols = translateSentence("ab  ac");
+        final sentence = translateText("ab  ac");
 
-        expect(symbols, [
+        expect(sentence.symbols, [
           MorseSymbol.DOT,
           MorseSymbol.SYMBOL_SPACE,
           MorseSymbol.DASH, // a
