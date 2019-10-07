@@ -5,12 +5,13 @@ class Broadcaster {
   final List<MorseSymbol> symbols;
   final int wordSpeed;
   final Signal signal;
+  bool isPlaying;
 
   Broadcaster({this.symbols, this.wordSpeed, this.signal});
 
-  void play() {
+  Future play() async {
     int dotSpeed = (1200 / wordSpeed).ceil();
-    Future.forEach(symbols, (MorseSymbol symbol) async {
+    await Future.forEach(symbols, (MorseSymbol symbol) async {
       switch(symbol) {
         case MorseSymbol.DOT:
           await signal.broadcast(dotSpeed);

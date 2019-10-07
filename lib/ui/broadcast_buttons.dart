@@ -14,6 +14,7 @@ class BroadcastButtons extends StatefulWidget {
 
 class _BroadcastButtonsState extends State<BroadcastButtons> {
   double wordSpeed = 5;
+  bool isPlaying = false;
 
   void setWordSpeed(double wordSpeed) {
     setState(() {
@@ -21,22 +22,46 @@ class _BroadcastButtonsState extends State<BroadcastButtons> {
     });
   }
 
+  void play() async {
+    this.setState(() {
+      print("set playing");
+      isPlaying = true;
+    });
+    await Broadcaster(
+            symbols: widget.symbols,
+            wordSpeed: wordSpeed.round(),
+            signal: LogSignal())
+        .play();
+    this.setState(() {
+      print("stop playing");
+      isPlaying = false;
+    });
+  }
+
+  void stop() {
+    // TODO
+  }
+
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        IconButton(
-          icon: Icon(
-            Icons.play_arrow,
-            color: Colors.blue,
-          ),
-          onPressed: () => Broadcaster(
-                  symbols: widget.symbols,
-                  wordSpeed: wordSpeed.round(),
-                  signal: LogSignal())
-              .play(),
-        ),
+        isPlaying
+            ? IconButton(
+                icon: Icon(
+                  Icons.stop,
+                  color: Colors.blue,
+                ),
+                onPressed: stop,
+              )
+            : IconButton(
+                icon: Icon(
+                  Icons.play_arrow,
+                  color: Colors.blue,
+                ),
+                onPressed: play,
+              ),
         Slider(
           divisions: 14,
           value: wordSpeed,
