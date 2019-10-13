@@ -10,6 +10,7 @@ class MorseScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final sentence = MorseTranslator().translateText(text);
     return Scaffold(
       appBar: AppBar(
         title: Text("Translated"),
@@ -19,12 +20,12 @@ class MorseScreen extends StatelessWidget {
           Expanded(
               child: SingleChildScrollView(
                   child: MorseView(
-            text: text,
+            sentence: sentence,
           ))),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 12.0),
             child: BroadcastButtons(
-              symbols: translateText(text).symbols,
+              symbols: sentence.symbols,
             ),
           )
         ],

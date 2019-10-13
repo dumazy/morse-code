@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:morse_code/domain/symbols.dart';
-import 'package:morse_code/domain/translator.dart';
 
 class MorseView extends StatelessWidget {
-  final String text;
+  final Sentence sentence;
 
-  const MorseView({Key key, this.text}) : super(key: key);
+  const MorseView({Key key, this.sentence}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final sentence = translateText(text);
     return Column(
       children: <Widget>[
         Column(

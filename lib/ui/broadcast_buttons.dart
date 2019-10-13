@@ -30,7 +30,7 @@ class _BroadcastButtonsState extends State<BroadcastButtons> {
     await Broadcaster(
             symbols: widget.symbols,
             wordSpeed: wordSpeed.round(),
-            signal: LogSignal())
+            signal: FlashSignal())
         .play();
     this.setState(() {
       print("stop playing");
