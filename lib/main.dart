@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:morse_code/domain/symbols.dart';
-import 'package:morse_code/domain/translator.dart';
+import 'package:morse_code/domain/dictionary.dart';
 import 'package:morse_code/ui/morse_screen.dart';
-import 'package:morse_code/ui/morse_view.dart';
 
 void main() => runApp(MyApp());
 
@@ -29,7 +27,6 @@ class _HomeScreenState extends State<HomeScreen> {
   String text = "";
   @override
   Widget build(BuildContext context) {
-    // final result = translate(text);
     Function onTranslate = text.isEmpty
         ? null
         : () {
@@ -45,12 +42,14 @@ class _HomeScreenState extends State<HomeScreen> {
             Text("Write some text and see the translation"),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 30.0),
-              child: TextField(
+              child: TextFormField(
                 onChanged: (newText) {
                   setState(() {
                     this.text = newText;
                   });
                 },
+                autocorrect: true,
+                validator: _validateInput,
               ),
             ),
             RaisedButton(
@@ -66,20 +65,8 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-// String translate(String text) {
-//   final symbols = translateText(text);
-//   return symbols.map<String>((MorseSymbol symbol) {
-//     switch (symbol) {
-//       case MorseSymbol.DOT:
-//         return ".";
-//       case MorseSymbol.DASH:
-//         return "-";
-//       case MorseSymbol.LETTER_SPACE:
-//         return " ";
-//       case MorseSymbol.WORD_SPACE:
-//         return "   ";
-//       default:
-//         return "";
-//     }
-//   }).join();
-// }
+String _validateInput(String input) {
+  final inDictionary =
+      input.replaceAll(" ", "").split("").every(dictionary.containsKey);
+  return inDictionary ? null : "Invalid character";
+}
