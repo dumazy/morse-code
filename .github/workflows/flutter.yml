@@ -13,6 +13,6 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Install dependencies
-      run: sudo flutter pub get
+      run: sudo /home/cirrus/sdks/flutter/bin/flutter pub get
     - name: Run tests
-      run: sudo flutter test
+      run: sudo /home/cirrus/sdks/flutter/bin/flutter test
