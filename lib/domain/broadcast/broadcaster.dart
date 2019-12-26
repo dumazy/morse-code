@@ -33,13 +33,13 @@ class Broadcaster {
           await signal.broadcast(dotDuration * 3);
           break;
         case MorseSymbol.SYMBOL_SPACE:
-          await pause(dotDuration);
+          await signal.pause(dotDuration);
           break;
         case MorseSymbol.LETTER_SPACE:
-          await pause(dotDuration * 3);
+          await signal.pause(dotDuration * 3);
           break;
         case MorseSymbol.WORD_SPACE:
-          await pause(dotDuration * 7);
+          await signal.pause(dotDuration * 7);
           break;
       }
     });
@@ -54,11 +54,6 @@ class Broadcaster {
   void setWordSpeed(double wordSpeed) {
     this._wordSpeed = wordSpeed;
     _wordSpeedController.add(wordSpeed);
-  }
-
-  Future pause(int milliseconds) async {
-    print("pause for $milliseconds ms");
-    await Future.delayed(Duration(milliseconds: milliseconds), () {});
   }
 
   stop() {
