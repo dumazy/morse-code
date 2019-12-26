@@ -10,23 +10,23 @@ class Broadcaster {
   Broadcaster({this.symbols, this.wordSpeed, this.signal});
 
   Future play() async {
-    int dotSpeed = (1200 / wordSpeed).ceil();
+    int dotDuration = (1200 / wordSpeed).ceil();
     await Future.forEach(symbols, (MorseSymbol symbol) async {
       switch(symbol) {
         case MorseSymbol.DOT:
-          await signal.broadcast(dotSpeed);
+          await signal.broadcast(dotDuration);
           break;
         case MorseSymbol.DASH:
-          await signal.broadcast(dotSpeed * 3);
+          await signal.broadcast(dotDuration * 3);
           break;
         case MorseSymbol.SYMBOL_SPACE:
-          await pause(dotSpeed);
+          await pause(dotDuration);
           break;
         case MorseSymbol.LETTER_SPACE:
-          await pause(dotSpeed * 3);
+          await pause(dotDuration * 3);
           break;
         case MorseSymbol.WORD_SPACE:
-          await pause(dotSpeed * 7);
+          await pause(dotDuration * 7);
           break;
       }
     });
