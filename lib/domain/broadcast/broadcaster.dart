@@ -15,6 +15,8 @@ class Broadcaster {
   BroadcastState get currentBroadcastState => _broadcastState;
 
   double _wordSpeed = 5;
+  int _dotDuration = (1200 / 5).ceil();
+
   StreamController<double> _wordSpeedController = StreamController.broadcast();
   Stream<double> get wordSpeedStream => _wordSpeedController.stream;
   double get currentWordSpeed => _wordSpeed;
@@ -28,24 +30,23 @@ class Broadcaster {
 
   Future play() async {
     _updateBroadcastState(BroadcastState.PLAYING);
-    int dotDuration = (1200 / _wordSpeed).ceil();
     await Future.forEach(symbols, (MorseSymbol symbol) async {
       _broadcastedSymbolController.add(symbol);
       switch (symbol.type) {
         case MorseSymbolType.DOT:
-          await signal.broadcast(dotDuration);
+          await signal.broadcast(_dotDuration);
           break;
         case MorseSymbolType.DASH:
-          await signal.broadcast(dotDuration * 3);
+          await signal.broadcast(_dotDuration * 3);
           break;
         case MorseSymbolType.SYMBOL_SPACE:
-          await signal.pause(dotDuration);
+          await signal.pause(_dotDuration);
           break;
         case MorseSymbolType.LETTER_SPACE:
-          await signal.pause(dotDuration * 3);
+          await signal.pause(_dotDuration * 3);
           break;
         case MorseSymbolType.WORD_SPACE:
-          await signal.pause(dotDuration * 7);
+          await signal.pause(_dotDuration * 7);
           break;
       }
     });
@@ -61,6 +62,7 @@ class Broadcaster {
   void setWordSpeed(double wordSpeed) {
     this._wordSpeed = wordSpeed;
     _wordSpeedController.add(wordSpeed);
+    _dotDuration = (1200 / _wordSpeed).ceil();
   }
 
   stop() {
