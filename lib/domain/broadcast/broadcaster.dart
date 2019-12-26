@@ -19,12 +19,18 @@ class Broadcaster {
   Stream<double> get wordSpeedStream => _wordSpeedController.stream;
   double get currentWordSpeed => _wordSpeed;
 
+  StreamController<MorseSymbol> _broadcastedSymbolController =
+      StreamController.broadcast();
+  Stream<MorseSymbol> get broadcastedSymbolStream =>
+      _broadcastedSymbolController.stream;
+
   Broadcaster({this.symbols, this.signal});
 
   Future play() async {
     _updateBroadcastState(BroadcastState.PLAYING);
     int dotDuration = (1200 / _wordSpeed).ceil();
     await Future.forEach(symbols, (MorseSymbol symbol) async {
+      _broadcastedSymbolController.add(symbol);
       switch (symbol.type) {
         case MorseSymbolType.DOT:
           await signal.broadcast(dotDuration);
@@ -43,6 +49,7 @@ class Broadcaster {
           break;
       }
     });
+    _broadcastedSymbolController.add(null);
     _updateBroadcastState(BroadcastState.FINISHED);
   }
 
