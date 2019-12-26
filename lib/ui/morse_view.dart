@@ -12,13 +12,13 @@ class MorseView extends StatelessWidget {
       children: <Widget>[
         Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: _displayText(sentence),
+          children: _displaySentence(sentence),
         ),
       ],
     );
   }
 
-  List<Widget> _displayText(Sentence sentence) {
+  List<Widget> _displaySentence(Sentence sentence) {
     return sentence.words.map((Word word) => _displayWord(word)).toList();
   }
 
