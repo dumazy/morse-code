@@ -23,6 +23,6 @@ class LogSignal extends Signal {
   @override
   pause(int milliseconds) async {
     print("Pause signal for $milliseconds");
-    super.pause(milliseconds);
+    await super.pause(milliseconds);
   }
 }

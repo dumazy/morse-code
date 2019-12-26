@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:morse_code/domain/broadcast/broadcaster.dart';
-import 'package:morse_code/domain/broadcast/signal.dart';
-import 'package:morse_code/domain/symbols.dart';
 import 'package:provider/provider.dart';
 
 class BroadcastController extends StatelessWidget {
@@ -52,19 +50,18 @@ class WordSpeedSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     final broadcaster = Provider.of<Broadcaster>(context);
     return StreamBuilder<double>(
-      stream: broadcaster.wordSpeedStream,
-      initialData: broadcaster.currentWordSpeed,
-      builder: (context, snapshot) {
-        final wordSpeed = snapshot.data;
-        return Slider(
-          divisions: 14,
-          value: wordSpeed,
-          min: 1,
-          max: 15,
-          label: wordSpeed.round().toString(),
-          onChanged: broadcaster.setWordSpeed,
-        );
-      }
-    );
+        stream: broadcaster.wordSpeedStream,
+        initialData: broadcaster.currentWordSpeed,
+        builder: (context, snapshot) {
+          final wordSpeed = snapshot.data;
+          return Slider(
+            divisions: 14,
+            value: wordSpeed,
+            min: 1,
+            max: 15,
+            label: wordSpeed.round().toString(),
+            onChanged: broadcaster.setWordSpeed,
+          );
+        });
   }
 }
