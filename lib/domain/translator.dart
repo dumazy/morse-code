@@ -6,12 +6,30 @@ class MorseTranslator {
 
   MorseTranslator({this.dictionary = morse_dictionary.dictionary});
 
+  MorseSymbol _createSymbol(MorseSymbolType type) {
+    switch (type) {
+      case MorseSymbolType.DOT:
+        return Dot();
+      case MorseSymbolType.DASH:
+        return Dash();
+      case MorseSymbolType.SYMBOL_SPACE:
+        return SymbolSpace();
+      case MorseSymbolType.LETTER_SPACE:
+        return LetterSpace();
+      case MorseSymbolType.WORD_SPACE:
+        return WordSpace();
+      default:
+        return null;
+    }
+  }
+
   Letter translateLetter(String letter) {
     // seems like this fold function could be better
-    List<MorseSymbolType> symbolList = dictionary[letter.toLowerCase()].fold(
+    List<MorseSymbol> symbolList = dictionary[letter.toLowerCase()].fold(
         null,
-        (list, item) =>
-            list == null ? [item] : [...list, MorseSymbolType.SYMBOL_SPACE, item]);
+        (list, item) => list == null
+            ? [_createSymbol(item)]
+            : [...list, SymbolSpace(), _createSymbol(item)]);
 
     return Letter(letter: letter, symbols: symbolList);
   }

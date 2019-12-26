@@ -4,7 +4,7 @@ import 'package:morse_code/domain/broadcast/signal.dart';
 import 'package:morse_code/domain/symbols.dart';
 
 class Broadcaster {
-  final List<MorseSymbolType> symbols;
+  final List<MorseSymbol> symbols;
   final Signal signal;
 
   BroadcastState _broadcastState = BroadcastState.IDLE;
@@ -24,8 +24,8 @@ class Broadcaster {
   Future play() async {
     _updateBroadcastState(BroadcastState.PLAYING);
     int dotDuration = (1200 / _wordSpeed).ceil();
-    await Future.forEach(symbols, (MorseSymbolType symbol) async {
-      switch (symbol) {
+    await Future.forEach(symbols, (MorseSymbol symbol) async {
+      switch (symbol.type) {
         case MorseSymbolType.DOT:
           await signal.broadcast(dotDuration);
           break;

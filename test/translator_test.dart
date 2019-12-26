@@ -18,34 +18,42 @@ main() {
     final translator = MorseTranslator(dictionary: dictionary);
     group('translate letter', () {
       test("should translate letter a", () {
-
         final letter = translator.translateLetter('a');
 
-        expect(letter.symbols, [MorseSymbolType.DOT, MorseSymbolType.SYMBOL_SPACE, MorseSymbolType.DASH]);
+        expect(letter.symbols.map((symbol) => symbol.type), [
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DASH
+        ]);
       });
 
       test("should translate symbol letter", () {
         final letter = translator.translateLetter('e');
 
-        expect(letter.symbols, [MorseSymbolType.DOT]);
+        expect(
+            letter.symbols.map((symbol) => symbol.type), [MorseSymbolType.DOT]);
       });
 
       test("should translate letter A", () {
         final letter = translator.translateLetter('A');
 
-        expect(letter.symbols, [MorseSymbolType.DOT, MorseSymbolType.SYMBOL_SPACE, MorseSymbolType.DASH]);
+        expect(letter.symbols.map((symbol) => symbol.type), [
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DASH
+        ]);
       });
     });
 
     group("translate word", () {
       test("should translate word", () {
         final word = translator.translateWord("abc");
-        
-        expect(word.symbols, [
+
+        expect(word.symbols.map((symbol) => symbol.type), [
           MorseSymbolType.DOT,
           MorseSymbolType.SYMBOL_SPACE,
           MorseSymbolType.DASH, // a
-          MorseSymbolType.LETTER_SPACE, 
+          MorseSymbolType.LETTER_SPACE,
           MorseSymbolType.DASH,
           MorseSymbolType.SYMBOL_SPACE,
           MorseSymbolType.DOT,
@@ -66,12 +74,12 @@ main() {
 
       test("should be case insensitive", () {
         final word = translator.translateWord("aBc");
-        
-        expect(word.symbols, [
+
+        expect(word.symbols.map((symbol) => symbol.type), [
           MorseSymbolType.DOT,
           MorseSymbolType.SYMBOL_SPACE,
           MorseSymbolType.DASH, // a
-          MorseSymbolType.LETTER_SPACE, 
+          MorseSymbolType.LETTER_SPACE,
           MorseSymbolType.DASH,
           MorseSymbolType.SYMBOL_SPACE,
           MorseSymbolType.DOT,
@@ -93,7 +101,7 @@ main() {
       test("should translate word with single symbol letter", () {
         final word = translator.translateWord("it");
 
-        expect(word.symbols, [
+        expect(word.symbols.map((symbol) => symbol.type), [
           MorseSymbolType.DOT,
           MorseSymbolType.SYMBOL_SPACE,
           MorseSymbolType.DOT,
@@ -105,7 +113,7 @@ main() {
       test("should trim spaces", () {
         final word = translator.translateWord("it ");
 
-        expect(word.symbols, [
+        expect(word.symbols.map((symbol) => symbol.type), [
           MorseSymbolType.DOT,
           MorseSymbolType.SYMBOL_SPACE,
           MorseSymbolType.DOT,
@@ -113,18 +121,17 @@ main() {
           MorseSymbolType.DASH,
         ]);
       });
-
     });
 
     group("translate sentence", () {
       test("should translate sentence", () {
         final sentence = translator.translateText("ab ac");
 
-        expect(sentence.symbols, [
+        expect(sentence.symbols.map((symbol) => symbol.type), [
           MorseSymbolType.DOT,
           MorseSymbolType.SYMBOL_SPACE,
           MorseSymbolType.DASH, // a
-          MorseSymbolType.LETTER_SPACE, 
+          MorseSymbolType.LETTER_SPACE,
           MorseSymbolType.DASH,
           MorseSymbolType.SYMBOL_SPACE,
           MorseSymbolType.DOT,
@@ -136,7 +143,7 @@ main() {
           MorseSymbolType.DOT,
           MorseSymbolType.SYMBOL_SPACE,
           MorseSymbolType.DASH, // a
-          MorseSymbolType.LETTER_SPACE, 
+          MorseSymbolType.LETTER_SPACE,
           MorseSymbolType.DASH,
           MorseSymbolType.SYMBOL_SPACE,
           MorseSymbolType.DOT,
@@ -149,11 +156,11 @@ main() {
       test("should trim double spaces", () {
         final sentence = translator.translateText("ab  ac");
 
-        expect(sentence.symbols, [
+        expect(sentence.symbols.map((symbol) => symbol.type), [
           MorseSymbolType.DOT,
           MorseSymbolType.SYMBOL_SPACE,
           MorseSymbolType.DASH, // a
-          MorseSymbolType.LETTER_SPACE, 
+          MorseSymbolType.LETTER_SPACE,
           MorseSymbolType.DASH,
           MorseSymbolType.SYMBOL_SPACE,
           MorseSymbolType.DOT,
@@ -165,7 +172,7 @@ main() {
           MorseSymbolType.DOT,
           MorseSymbolType.SYMBOL_SPACE,
           MorseSymbolType.DASH, // a
-          MorseSymbolType.LETTER_SPACE, 
+          MorseSymbolType.LETTER_SPACE,
           MorseSymbolType.DASH,
           MorseSymbolType.SYMBOL_SPACE,
           MorseSymbolType.DOT,

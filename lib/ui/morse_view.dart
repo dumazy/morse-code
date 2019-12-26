@@ -34,22 +34,20 @@ class MorseView extends StatelessWidget {
   Widget _displayLetter(Letter letter) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
         Flexible(flex: 1, child: Text(letter.letter)),
         Flexible(
           flex: 3,
           child: Row(
-              children: letter.symbols.map(_displaySymbol).toList(),
-            ),
+            children: letter.symbols.map(_displaySymbol).toList(),
+          ),
         ),
       ]),
     );
   }
 
-  Widget _displaySymbol(MorseSymbolType symbol) {
-    switch (symbol) {
+  Widget _displaySymbol(MorseSymbol symbol) {
+    switch (symbol.type) {
       case MorseSymbolType.DOT:
         return DotSymbol();
       case MorseSymbolType.DASH:
