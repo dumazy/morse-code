@@ -48,15 +48,15 @@ class MorseView extends StatelessWidget {
     );
   }
 
-  Widget _displaySymbol(MorseSymbol symbol) {
+  Widget _displaySymbol(MorseSymbolType symbol) {
     switch (symbol) {
-      case MorseSymbol.DOT:
+      case MorseSymbolType.DOT:
         return DotSymbol();
-      case MorseSymbol.DASH:
+      case MorseSymbolType.DASH:
         return DashSymbol();
-      case MorseSymbol.SYMBOL_SPACE:
+      case MorseSymbolType.SYMBOL_SPACE:
         return SymbolSpace();
-      case MorseSymbol.LETTER_SPACE:
+      case MorseSymbolType.LETTER_SPACE:
         return LetterSpace();
       default:
         return Container();

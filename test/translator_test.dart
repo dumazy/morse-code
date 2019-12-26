@@ -2,8 +2,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:morse_code/domain/symbols.dart';
 import 'package:morse_code/domain/translator.dart';
 
-const dot = MorseSymbol.DOT;
-const dash = MorseSymbol.DASH;
+const dot = MorseSymbolType.DOT;
+const dash = MorseSymbolType.DASH;
 
 main() {
   group('translator', () {
@@ -21,19 +21,19 @@ main() {
 
         final letter = translator.translateLetter('a');
 
-        expect(letter.symbols, [MorseSymbol.DOT, MorseSymbol.SYMBOL_SPACE, MorseSymbol.DASH]);
+        expect(letter.symbols, [MorseSymbolType.DOT, MorseSymbolType.SYMBOL_SPACE, MorseSymbolType.DASH]);
       });
 
       test("should translate symbol letter", () {
         final letter = translator.translateLetter('e');
 
-        expect(letter.symbols, [MorseSymbol.DOT]);
+        expect(letter.symbols, [MorseSymbolType.DOT]);
       });
 
       test("should translate letter A", () {
         final letter = translator.translateLetter('A');
 
-        expect(letter.symbols, [MorseSymbol.DOT, MorseSymbol.SYMBOL_SPACE, MorseSymbol.DASH]);
+        expect(letter.symbols, [MorseSymbolType.DOT, MorseSymbolType.SYMBOL_SPACE, MorseSymbolType.DASH]);
       });
     });
 
@@ -42,25 +42,25 @@ main() {
         final word = translator.translateWord("abc");
         
         expect(word.symbols, [
-          MorseSymbol.DOT,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DASH, // a
-          MorseSymbol.LETTER_SPACE, 
-          MorseSymbol.DASH,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT, // b
-          MorseSymbol.LETTER_SPACE,
-          MorseSymbol.DASH,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DASH,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT, // c
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DASH, // a
+          MorseSymbolType.LETTER_SPACE, 
+          MorseSymbolType.DASH,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT, // b
+          MorseSymbolType.LETTER_SPACE,
+          MorseSymbolType.DASH,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DASH,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT, // c
         ]);
       });
 
@@ -68,25 +68,25 @@ main() {
         final word = translator.translateWord("aBc");
         
         expect(word.symbols, [
-          MorseSymbol.DOT,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DASH, // a
-          MorseSymbol.LETTER_SPACE, 
-          MorseSymbol.DASH,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT, // b
-          MorseSymbol.LETTER_SPACE,
-          MorseSymbol.DASH,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DASH,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT, // c
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DASH, // a
+          MorseSymbolType.LETTER_SPACE, 
+          MorseSymbolType.DASH,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT, // b
+          MorseSymbolType.LETTER_SPACE,
+          MorseSymbolType.DASH,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DASH,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT, // c
         ]);
       });
 
@@ -94,11 +94,11 @@ main() {
         final word = translator.translateWord("it");
 
         expect(word.symbols, [
-          MorseSymbol.DOT,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT,
-          MorseSymbol.LETTER_SPACE,
-          MorseSymbol.DASH,
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT,
+          MorseSymbolType.LETTER_SPACE,
+          MorseSymbolType.DASH,
         ]);
       });
 
@@ -106,11 +106,11 @@ main() {
         final word = translator.translateWord("it ");
 
         expect(word.symbols, [
-          MorseSymbol.DOT,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT,
-          MorseSymbol.LETTER_SPACE,
-          MorseSymbol.DASH,
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT,
+          MorseSymbolType.LETTER_SPACE,
+          MorseSymbolType.DASH,
         ]);
       });
 
@@ -121,58 +121,58 @@ main() {
         final sentence = translator.translateText("ab ac");
 
         expect(sentence.symbols, [
-          MorseSymbol.DOT,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DASH, // a
-          MorseSymbol.LETTER_SPACE, 
-          MorseSymbol.DASH,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT, // b
-          MorseSymbol.WORD_SPACE,
-          MorseSymbol.DOT,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DASH, // a
-          MorseSymbol.LETTER_SPACE, 
-          MorseSymbol.DASH,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DASH,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT, // c
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DASH, // a
+          MorseSymbolType.LETTER_SPACE, 
+          MorseSymbolType.DASH,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT, // b
+          MorseSymbolType.WORD_SPACE,
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DASH, // a
+          MorseSymbolType.LETTER_SPACE, 
+          MorseSymbolType.DASH,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DASH,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT, // c
         ]);
       });
       test("should trim double spaces", () {
         final sentence = translator.translateText("ab  ac");
 
         expect(sentence.symbols, [
-          MorseSymbol.DOT,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DASH, // a
-          MorseSymbol.LETTER_SPACE, 
-          MorseSymbol.DASH,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT, // b
-          MorseSymbol.WORD_SPACE,
-          MorseSymbol.DOT,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DASH, // a
-          MorseSymbol.LETTER_SPACE, 
-          MorseSymbol.DASH,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DASH,
-          MorseSymbol.SYMBOL_SPACE,
-          MorseSymbol.DOT, // c
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DASH, // a
+          MorseSymbolType.LETTER_SPACE, 
+          MorseSymbolType.DASH,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT, // b
+          MorseSymbolType.WORD_SPACE,
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DASH, // a
+          MorseSymbolType.LETTER_SPACE, 
+          MorseSymbolType.DASH,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DASH,
+          MorseSymbolType.SYMBOL_SPACE,
+          MorseSymbolType.DOT, // c
         ]);
       });
     });

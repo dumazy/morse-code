@@ -1,10 +1,10 @@
 import 'package:morse_code/domain/symbols.dart';
 
-const dot = MorseSymbol.DOT;
-const dash = MorseSymbol.DASH;
-const symbol_space = MorseSymbol.SYMBOL_SPACE;
+const dot = MorseSymbolType.DOT;
+const dash = MorseSymbolType.DASH;
+const symbol_space = MorseSymbolType.SYMBOL_SPACE;
 
-const Map<String, List<MorseSymbol>> dictionary = {
+const Map<String, List<MorseSymbolType>> dictionary = {
   'a': [dot, dash],
   'b': [dash, dot, dot, dot],
   'c': [dash, dot, dash, dot],

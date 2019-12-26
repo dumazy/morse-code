@@ -1,4 +1,4 @@
-enum MorseSymbol {
+enum MorseSymbolType {
   DOT,
   DASH,
   SYMBOL_SPACE,
@@ -6,8 +6,10 @@ enum MorseSymbol {
   WORD_SPACE,
 } 
 
+
+
 class Letter {
-  final List<MorseSymbol> symbols;
+  final List<MorseSymbolType> symbols;
   final String letter;
 
   Letter({this.symbols, this.letter});
@@ -19,11 +21,11 @@ class Word {
 
   Word({this.word, this.letters});
 
-  List<MorseSymbol> get symbols => letters.fold([], (list, letter) {
+  List<MorseSymbolType> get symbols => letters.fold([], (list, letter) {
     if(list.isEmpty) {
       list.addAll(letter.symbols);
     } else {
-      list.add(MorseSymbol.LETTER_SPACE);
+      list.add(MorseSymbolType.LETTER_SPACE);
       list.addAll(letter.symbols);
     }
     return list;
@@ -36,11 +38,11 @@ class Sentence {
 
   Sentence({this.sentence, this.words});
 
-  List<MorseSymbol> get symbols => words.fold([], (list, word) {
+  List<MorseSymbolType> get symbols => words.fold([], (list, word) {
     if(list.isEmpty) {
       list.addAll(word.symbols);
     } else {
-      list.add(MorseSymbol.WORD_SPACE);
+      list.add(MorseSymbolType.WORD_SPACE);
       list.addAll(word.symbols);
     }
     return list;

@@ -2,16 +2,16 @@ import 'package:morse_code/domain/dictionary.dart' as morse_dictionary;
 import 'package:morse_code/domain/symbols.dart';
 
 class MorseTranslator {
-  final Map<String, List<MorseSymbol>> dictionary;
+  final Map<String, List<MorseSymbolType>> dictionary;
 
   MorseTranslator({this.dictionary = morse_dictionary.dictionary});
 
   Letter translateLetter(String letter) {
     // seems like this fold function could be better
-    List<MorseSymbol> symbolList = dictionary[letter.toLowerCase()].fold(
+    List<MorseSymbolType> symbolList = dictionary[letter.toLowerCase()].fold(
         null,
         (list, item) =>
-            list == null ? [item] : [...list, MorseSymbol.SYMBOL_SPACE, item]);
+            list == null ? [item] : [...list, MorseSymbolType.SYMBOL_SPACE, item]);
 
     return Letter(letter: letter, symbols: symbolList);
   }
