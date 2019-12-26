@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:morse_code/domain/broadcast/broadcaster.dart';
+import 'package:morse_code/domain/broadcast/signal.dart';
 import 'package:morse_code/domain/translator.dart';
-import 'package:morse_code/ui/broadcast_buttons.dart';
+import 'package:morse_code/ui/broadcast_controller.dart';
 import 'package:morse_code/ui/morse_view.dart';
+import 'package:provider/provider.dart';
 
 class MorseScreen extends StatelessWidget {
   final String text;
@@ -15,20 +18,24 @@ class MorseScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Translated"),
       ),
-      body: Column(
-        children: <Widget>[
-          Expanded(
-              child: SingleChildScrollView(
-                  child: MorseView(
-            sentence: sentence,
-          ))),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 12.0),
-            child: BroadcastButtons(
-              symbols: sentence.symbols,
-            ),
-          )
-        ],
+      body: Provider(
+        create: (_) => Broadcaster(
+          symbols: sentence.symbols,
+          signal: LogSignal(),
+        ),
+        child: Column(
+          children: <Widget>[
+            Expanded(
+                child: SingleChildScrollView(
+                    child: MorseView(
+              sentence: sentence,
+            ))),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
+              child: BroadcastController(),
+            )
+          ],
+        ),
       ),
     );
   }
