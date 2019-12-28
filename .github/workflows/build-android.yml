@@ -18,9 +18,12 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Install dependencies
-        run: sudo /home/cirrus/sdks/flutter/bin/flutter pub get
+        run: sudo /home/cirrus/sdks/flutter/bin/flutter pub get 
       - name: Build Android version
         run:  flutter build apk --release --verbose
+      - name: Print error log
+        if: failure()
+        run: cat /tmp/flutter_01.log
       - name: Sign Android release
         uses: r0adkll/sign-android-release@v1
         with:
