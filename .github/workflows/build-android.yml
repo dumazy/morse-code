@@ -9,7 +9,12 @@ on:
 jobs:
   build-android:
     name: Deploy beta version
+
     runs-on: ubuntu-latest
+
+    container:
+      image:  cirrusci/flutter:v1.12.13-hotfix.5
+
     steps:
       - uses: actions/checkout@v1
       - name: Install dependencies
