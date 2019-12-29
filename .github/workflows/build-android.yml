@@ -21,6 +21,7 @@ jobs:
         run:  flutter build apk --pub --release --verbose
       - name: Sign Android release
         uses: r0adkll/sign-android-release@v1
+        id: sign_release
         with:
           releaseDirectory: build/app/outputs/apk/release/
           signingKeyBase64: ${{ secrets.SIGNING_KEY }}
@@ -31,4 +32,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: app-release.apk
-          path: $SIGNED_RELEASE_FILE
+          path: ${{ steps.sign_release.outputs.signedReleaseFile }}
