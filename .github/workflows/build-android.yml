@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image:  gableroux/flutter:latest
+      image:  dumazy/flutter:latest
 
     steps:
       - uses: actions/checkout@v1
