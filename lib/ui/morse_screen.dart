@@ -6,6 +6,8 @@ import 'package:morse_code/ui/broadcast_controller.dart';
 import 'package:morse_code/ui/morse_view.dart';
 import 'package:provider/provider.dart';
 
+import '../domain/broadcast/signal.dart';
+
 class MorseScreen extends StatelessWidget {
   final String text;
 
@@ -21,7 +23,7 @@ class MorseScreen extends StatelessWidget {
       body: Provider(
         create: (_) => Broadcaster(
           symbols: sentence.symbols,
-          signal: LogSignal(),
+          signal: FlashSignal(),
         ),
         child: Column(
           children: <Widget>[
