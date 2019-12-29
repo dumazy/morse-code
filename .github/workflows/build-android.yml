@@ -22,7 +22,7 @@ jobs:
       - name: Sign Android release
         uses: r0adkll/sign-android-release@v1
         with:
-          releaseDirectory: /android/app/build/outputs/apk/release
+          releaseDirectory: build/app/outputs/apk/release/
           signingKeyBase64: ${{ secrets.SIGNING_KEY }}
           alias: ${{ secrets.KEY_ALIAS }}
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
@@ -31,4 +31,4 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: app-release.apk
-          path: /android/app/build/outputs/apk/release/app-release.apk
+          path: build/app/outputs/apk/release/app-release.apk
