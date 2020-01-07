@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image:  dumazy/flutter:latest
+      image:  docker.pkg.github.com/dumazy/docker-flutter/flutter:1.0.0
 
     steps:
       - uses: actions/checkout@v1
