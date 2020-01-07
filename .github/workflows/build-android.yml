@@ -7,7 +7,16 @@ on:
       - release/*
       
 jobs:
+  login-docker:
+    name: Login to Github Packages Docker
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Docker login
+        run: docker login -u $GITHUB_ACTOR -p $GITHUB_TOKEN docker.pkg.github.com
+    
   build-android:
+    needs: login-docker
     name: Deploy beta version
 
     runs-on: ubuntu-latest
