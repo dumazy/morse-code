@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Docker login
-        run: echo "Login as $GITHUB_ACTOR" && docker login -u $GITHUB_ACTOR -p $DOCKER_PACKAGES_TOKEN docker.pkg.github.com
+        run: echo "Login as $GITHUB_ACTOR" && docker login -u $GITHUB_ACTOR -p ${{secrets.DOCKER_PACKAGES_TOKEN}} docker.pkg.github.com
     
   build-android:
     needs: login-docker
