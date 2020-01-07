@@ -26,6 +26,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+      - name: Docker login
+        run: echo "Login as $GITHUB_ACTOR" && docker login -u $GITHUB_ACTOR -p ${{secrets.DOCKER_PACKAGES_TOKEN}} docker.pkg.github.com
       - name: Build Android version
         run:  flutter build apk --pub --release --verbose
       - name: Sign Android release
